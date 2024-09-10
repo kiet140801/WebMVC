@@ -1,0 +1,67 @@
+﻿@model List<App.Core.Entities.Product>
+}
+
+<section id="clothing" class="my-5 overflow-hidden">
+    <div class="container pb-5">
+
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <h2 class="display-3 fw-normal">Pet Clothing</h2>
+            @if (bool.Parse(@ViewData["IsAmin"].ToString()))
+            {
+                <div>
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Create">New Product</a>
+                </div>
+            }
+            <div>
+                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    shop now
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                        <use xlink:href="#arrow-right"></use>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="products-carousel swiper">
+            <div class="swiper-wrapper">
+                @foreach(var product in Model)
+                {
+                    <div class="swiper-slide">
+                    @* <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div> *@
+                    <div class="card position-relative">
+                            <a href="single-product.html"><img style="width: 200px;height: 200px;" src=@("http://" + Context.Request.Host.ToUriComponent() + "/image/" + product.ImageFile) class="img-fluid rounded-4" alt="image"></a>
+                        <div class="card-body p-0">
+                            <a href="single-product.html">
+                                <h3 class="card-title pt-4 m-0">@product.Name</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <h3 class="secondary-font text-primary">@product.Price$</h3>
+
+                                <form method="post">
+                                        <button type="submit" asp-action="AddToCart" 
+                                        asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-primary" >Add To Cart</button>
+                                </form>
+
+                                <div>
+                                    <a class="btn btn-warning btn-sm" asp-controller="Product"
+                                           asp-action="Edit" asp-route-id="@product.Id">Edit Product</a>
+                                        <a class="btn btn-danger btn-sm" asp-controller="Product"
+                                        asp-action="Delete" asp-route-id="@product.Id" onclick="return confirm('are you sure?')">Delete</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        <!-- / products-carousel -->
+
+
+    </div>
+</section>

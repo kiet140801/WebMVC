@@ -1,0 +1,24 @@
+﻿@model WebDemoApplication.Models.Dtos.UserDto
+
+<h1>Create User</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div >
+        <label asp-for="IsAdmin" ></label>
+        <input asp-for="IsAdmin" type="checkbox" />
+        <span asp-validation-for="IsAdmin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
